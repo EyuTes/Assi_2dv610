@@ -41,6 +41,16 @@ class NumuberFinderTest {
         numberFinder.find(new int[]{350,300,100,12,5,0,-12,-90});
         Assertions.assertEquals(350, numberFinder.getLargest());
     }
+    @Test
+    void getSmallestWhenArraySameNumber(){
+        numberFinder.find(new int[]{7,7,7,7,7});
+        Assertions.assertEquals(7, numberFinder.getSmallest());
+    }
+    @Test
+    void getLargestWhenArraySameNumber(){
+        numberFinder.find(new int[]{0,0,0,0,0,0});
+        Assertions.assertEquals(0, numberFinder.getLargest());
+    }
 
 
 }

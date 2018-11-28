@@ -12,7 +12,7 @@ public class NumuberFinder {
         for(int num : number){
             if(num < smallest ){
                 smallest=num;
-            }else if(num > largest){
+            }if(num > largest){//the logic fails for inputs of array in decreasing order for if-else if
                 largest=num;
             }
         }
