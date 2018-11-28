@@ -31,4 +31,29 @@ class RomanNumeralTest {
         assertEquals(16, result);
     }
 
+    @Test
+    void numberWithSubtractiveNotations() {
+        int result = roman.convert("IX");
+        assertEquals(9, result);
+        //Assertions.assertEquals(9, result);
+    }
+
+    @Test
+    void numberWithDigitAndSubtractiveNotaions() {
+        RomanNumeral roman = new RomanNumeral();
+        int result = roman.convert("XIX");
+        assertEquals(19, result);
+    }
+
+    @Test
+    public void numberWithSubtractiveNotation() {
+        int result = roman.convert("IV");
+        assertEquals(4, result);
+    }
+
+    @Test
+    public void numberWithAndWithoutSubtractiveNotation() {
+        int result = roman.convert("XLIV");
+        assertEquals(44, result);
+    }
 }
