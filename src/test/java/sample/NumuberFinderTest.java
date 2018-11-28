@@ -16,4 +16,9 @@ class NumuberFinderTest {
         numberFinder.find(new int[]{4,25,7,9});
         Assertions.assertEquals(4,numberFinder.getSmallest());
     }
+    @Test
+    void getSmallestWhenArrayIsInIncreasingOrder() {
+        numberFinder.find(new int[]{1,7,12,18});
+        Assertions.assertEquals(4,numberFinder.getSmallest());
+    }
 }

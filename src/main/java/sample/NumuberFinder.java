@@ -9,7 +9,13 @@ public class NumuberFinder {
     private  int largest=Integer.MIN_VALUE;
     //A method that finds both the smallest and the largest number from the array of integers
     public void find(int [] number){
-
+        for(int num : number){
+            if(num < smallest ){
+                smallest=num;
+            }else if(num > largest){
+                largest=num;
+            }
+        }
     }
     //Getter-get the smallest number from the list of numbers
     public int getSmallest(){
