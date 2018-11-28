@@ -4,6 +4,7 @@ package sample;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import java.util.Map;
 
 class NumuberFinderTest {
     private NumuberFinder numberFinder;
@@ -51,6 +52,11 @@ class NumuberFinderTest {
         numberFinder.find(new int[]{0,0,0,0,0,0});
         Assertions.assertEquals(0, numberFinder.getLargest());
     }
-
+    @Test
+    void getSmallesAndLargest(){
+        Map<Integer,Integer> numFind=numberFinder.findNum(new int[]{12,15,7,3,30});
+        Assertions.assertEquals(30, numberFinder.getLargest());
+        Assertions.assertEquals(3, numberFinder.getSmallest());
+    }
 
 }

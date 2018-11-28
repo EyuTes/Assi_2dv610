@@ -1,5 +1,6 @@
 package sample;
-
+import  java.util.HashMap;
+import java.util.Map;
 /**
  * This class finds the smallest and the largest number form the given array
  */
@@ -16,6 +17,18 @@ public class NumuberFinder {
                 largest=num;
             }
         }
+    }
+    public Map<Integer, Integer> findNum(int [] number){
+        Map<Integer, Integer> findNumber=new HashMap<>();
+        for(int num:number){
+            if(num < smallest ){
+                smallest=num;
+            }if(num > largest){//if we make it else if-> the test will fail for decreasing order arrays so change to if  to fix error
+                largest=num;
+            }
+        }
+        findNumber.put(smallest,largest);
+        return findNumber;
     }
     //Getter-get the smallest number from the list of numbers
     public int getSmallest(){
