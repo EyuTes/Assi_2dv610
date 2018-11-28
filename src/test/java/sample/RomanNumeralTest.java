@@ -20,4 +20,15 @@ class RomanNumeralTest {
         int result = roman.convert("I");
         assertEquals(1, result);
     }
+    @Test
+    void NumberWithMultipleDigits() {
+        int result = roman.convert("VIII");
+        assertEquals(8, result);
+    }
+    @Test
+    void numberWithDifferentDigits() {
+        int result = roman.convert("XVI");
+        assertEquals(16, result);
+    }
+
 }
