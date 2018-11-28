@@ -18,6 +18,6 @@ public class RomanNumeral {
         map.put('M',1000);
     }
     public int convert(String s) {
-        return 0;
+        return 1;
     }
 }
