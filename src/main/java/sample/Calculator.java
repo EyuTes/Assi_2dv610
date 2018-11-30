@@ -1,6 +1,7 @@
 package sample;
 
 import java.util.List;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 
 /**
@@ -16,6 +17,12 @@ public class Calculator {
        return sum;
     }
     public List<Integer> filters(List<Integer> integerList, Predicate<Integer> predicate){
-       return integerList;
+        List<Integer> filteredNumbers=new ArrayList<>();
+        for(Integer number:integerList){
+            if(predicate.test(number)){
+                filteredNumbers.add(number);
+            }
+        }
+        return filteredNumbers;
     }
 }
