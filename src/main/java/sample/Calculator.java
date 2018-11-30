@@ -1,5 +1,8 @@
 package sample;
 
+import java.util.List;
+import java.util.function.Predicate;
+
 /**
  * This class acts as a calculator to sum, subtract, multiply numbers or array of numbers
  */
@@ -11,5 +14,8 @@ public class Calculator {
            sum+=num;
        }
        return sum;
+    }
+    public List<Integer> filters(List<Integer> integerList, Predicate<Integer> predicate){
+       return integerList;
     }
 }
