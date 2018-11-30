@@ -32,9 +32,25 @@ public class Flight {
         return Collections.unmodifiableList(passengerList);
     }
     public boolean addPasseneger(Passenger passenger) {
-        return false;
+        switch (flightType) {
+            case "Ecnomy":
+                return passengerList.add(passenger);
+            default:
+                throw new RuntimeException("unknown type" + flightType);
+        }
     }
     public boolean removePasseneger(Passenger passenger){
-        return false;
+        switch (flightType) {
+            case "Ecnomy":
+                if (passenger.isVIP()) {
+                    //passenger can be removed if not vip
+                    return passengerList.remove(passenger);
+                }
+                return false;
+            case "Business":
+                return false;
+            default:
+                throw new RuntimeException("un known type" + flightType);
+        }
     }
 }
