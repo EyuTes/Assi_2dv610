@@ -18,6 +18,13 @@ public class Calculator {
     }
     public List<Integer> filters(List<Integer> integerList, Predicate<Integer> predicate){
           return integerList.stream().filter(predicate).collect(Collectors.toList());
+          /*List<Integer> filteredNumbers=new ArrayList<>();
+           for(Integer number:integerList){
+            if(predicate.test(number)){
+                filteredNumbers.add(number);
+            }
+             return filteredNumbers;
+        }*/
    }
 
 }
