@@ -5,8 +5,11 @@ package sample;
  */
 public class Calculator {
 
-
     public int sum(int [] numbers){
-        return 5;
+       int sum=0;
+       for(int num:numbers){
+           sum+=num;
+       }
+       return sum;
     }
 }
