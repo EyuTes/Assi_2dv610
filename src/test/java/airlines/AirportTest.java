@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  *  1. For economic flight-> Any passengers can be added(vip or usual passengers)
  *  2. For business flight->only vip passengers has to be added.
  *  The Remove passenger policy is
- *  1. For economic flight->possible to remove any passengers type
+ *  1. For economic flight->except vip remove any passenger
  *  2.For business flight->Reject remove passenger if it's vip.
  */
 class AirportTest {
@@ -31,14 +31,27 @@ class AirportTest {
         businessFlight=new Flight("2","Business");
         joel=new Passenger("Joel",false);
         meli=new Passenger("Meli", true);
-
     }
-    @DisplayName("Test flight based on policy:Economic flight-> Ordinary or vip passengers can be added to economic flight. It's possible to remove economic flight\n" +
-            "Business flight-> only vip can be added and not possible to remove vip")
-    @Test
-    void testEconomyFlightUsualPassenger(){
 
-        assertAll("Verify all conditions for economic and business flight",
+    @DisplayName("Economic flight policy:-Ordinary and vip passengers can to be added.")
+    @Test
+    void testAddPolicyForEconomicFlight(){
+
+        assertAll("Verify all conditions to add passenger to economic flight",
+                () -> assertEquals("1", economyFlight.getId()),
+                //Possible to add both vip and non vip passengers to economic flight.
+                () -> assertEquals(true, economyFlight.addPasseneger(joel)),
+                () -> assertEquals(true, economyFlight.addPasseneger(meli)),
+                () -> assertEquals(2, economyFlight.getPassengerList().size()),
+                () -> assertEquals("Joel", economyFlight.getPassengerList().get(0).getName()),
+                () -> assertEquals("Meli", economyFlight.getPassengerList().get(1).getName())
+        );
+    }
+    @DisplayName("Economic flight policy:-Only non vip passengers can be removed.")
+    @Test
+    void testRemovePolicyForEconomicFlight(){
+
+        assertAll("Verify all conditions to remove passenger from economic flight",
                 () -> assertEquals("1", economyFlight.getId()),
                 //Any passengers can be added to economic flight
                 () -> assertEquals(true, economyFlight.addPasseneger(joel)),
@@ -49,15 +62,35 @@ class AirportTest {
                 () -> assertEquals("Meli", economyFlight.getPassengerList().get(1).getName()),
                 () -> assertEquals(true, economyFlight.removePasseneger(joel)),
                 () -> assertEquals(1, economyFlight.getPassengerList().size()),
+                () -> assertEquals(false, economyFlight.removePasseneger(meli)),
+                () -> assertEquals(1, economyFlight.getPassengerList().size())
+        );
+    }
+    @DisplayName("Business flight policy:-only vip passengers can be added to business flight.")
+    @Test
+    void testAddPolicyForBusinessFlight(){
+        assertAll("Verify all conditions to add passenger to business flight",
+                () -> assertEquals("2", businessFlight.getId()),
+                //VIP passengers can be added to business flight but non vip can't
+                () -> assertEquals(true, businessFlight.addPasseneger(meli)),
+                () -> assertEquals(false, businessFlight.addPasseneger(joel)),
+                () -> assertEquals(1, businessFlight.getPassengerList().size()),
+                () -> assertEquals("Meli", businessFlight.getPassengerList().get(0).getName())
+          );
+    }
+    @DisplayName("Business flight policy:-vip passengers can't be removed.")
+    @Test
+    void testRemovePolicyForBusinessFlight(){
+
+        assertAll("Verify conditions to remove vip passenger from business flight.It's protected!",
                 () -> assertEquals("2", businessFlight.getId()),
                 //VIP passengers can be added to business flight
-                () -> assertEquals(true, economyFlight.addPasseneger(meli)),
+                () -> assertEquals(true, businessFlight.addPasseneger(meli)),
                 () -> assertEquals(1, businessFlight.getPassengerList().size()),
                 () -> assertEquals("Meli", businessFlight.getPassengerList().get(0).getName()),
                 /* reject to remove business class passengers */
                 () -> assertEquals(false, businessFlight.removePasseneger(meli)),
                 () -> assertEquals(1, businessFlight.getPassengerList().size())
-           );
+        );
     }
-
 }
