@@ -34,11 +34,22 @@ class CalculatorTest {
     void getSumOfEvenFilteredNumbers() {
 
         Predicate<Integer> even=i -> i %2== 0;
+        Predicate<Integer> odd=i -> i %2!= 0;
+        Predicate<Integer> positive= i -> i > 0;
+        Predicate<Integer> negative= i -> i < 0;
+
         List<Integer> integerList=Arrays.asList(1,10,200,101,-1,0);
-        List<Integer> actual=calculator.filters(integerList,even);
-        List<Integer> expected=Arrays.asList(10,200,0);
-        assertAll("even numbers filtered",
-                ()->assertEquals(expected,actual)
+
+        List<Integer> expectedEven=Arrays.asList(10,200,0);
+        List<Integer> expectedOdd=Arrays.asList(1,101,-1);
+        List<Integer> expectedPositive=Arrays.asList(1,10,200,101);
+        List<Integer> expectedNegative=Arrays.asList(-1);
+
+        assertAll("Filtered numbers based on the predicate",
+                ()->assertEquals(expectedEven,calculator.filters(integerList,even)),
+                ()->assertEquals(expectedOdd,calculator.filters(integerList,odd)),
+                ()->assertEquals(expectedPositive,calculator.filters(integerList,positive)),
+                ()->assertEquals(expectedNegative,calculator.filters(integerList,negative))
         );
     }
 
