@@ -3,9 +3,10 @@ package recipes;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
 
 
 class RecipeManagerTest {
@@ -18,7 +19,21 @@ class RecipeManagerTest {
         recipe = Mockito.mock(Recipe.class);
         recipeManager = new RecipeManager();
     }
-
+    @Test
+    public void whenExceptionThrown_thenAssertionSucceeds() {
+        String test = null;
+        assertThrows(NullPointerException.class, () -> {
+            test.length();
+        });
+      }
+    @Test
+    void testValidateObject() {
+        String test = null;
+      Throwable exception =assertThrows(NullPointerException.class, () -> {
+            recipeManager.validate(test) ;
+        });
+       //assertEquals("Null/Empty",exception.getMessage());
+    }
     @Test
     void testRecipeManager() {
         recipe.setCategory(FoodCategory.Meat);

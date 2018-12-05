@@ -83,7 +83,7 @@ public class Address {
         strCountry = strCountry.replace("_", " ");
         return strCountry;
     }
-    public boolean validate(Object input)
+    private boolean validate(Object input)
     {
         if (input=="" || input==null)
             throw new NullPointerException(" Null or Empty is not allowed");

@@ -128,7 +128,7 @@ public class Recipe {
     private boolean validate(Object input)
     {
         if (input=="" || input==null)
-            throw new NullPointerException(" Null or Empty is not allowed");
+            throw new NullPointerException(" Null/Empty is not allowed");
         return true;
     }
 }

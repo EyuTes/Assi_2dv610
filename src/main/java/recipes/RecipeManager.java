@@ -68,11 +68,12 @@ public class RecipeManager {
     {
         return index >= 0 && index < recipeList.size();
     }
-    private boolean validate(Object input)
+    public boolean validate(Object input)
     {
         if (input=="" || input==null)
-          throw new NullPointerException(" Null or Empty is not allowed");
-        return !(input=="" || input==null);
+         throw new NullPointerException("Null/Empty!");
+        //return !(input==" " || input==null);
+        return true;
     }
 
 }
